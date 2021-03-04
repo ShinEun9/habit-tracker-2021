@@ -11,6 +11,7 @@ class Habit extends Component {
     this.props.onDelete(this.props.habit);
   };
   render() {
+    // console.log(this.props);
     const { name, count } = this.props.habit;
     return (
       <li className="habit">
