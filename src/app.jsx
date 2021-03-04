@@ -22,11 +22,26 @@ class app extends Component {
     });
     this.setState({ totalCount });
   };
+  handleResetClick = (event) => {
+    // console.log(event);
+    // let count = 0;
+    // this.state.habits.forEach((item) => {
+    //   this.setState({ count: 0 });
+    // });
+    const habits = [...this.state.habits];
+    habits.forEach((item) => {
+      item.count = 0;
+    });
+    this.setState({ habits });
+  };
   render() {
     return (
       <>
         <Navbar habits totalCount={this.state.totalCount} />
+        <input type="text" placeholder="Habit" />
+        <button>Add</button>
         <Habits habits={this.state.habits} onUpdate={this.handleUpdate} />
+        <button onClick={this.handleResetClick}>Reset All</button>
       </>
     );
   }
