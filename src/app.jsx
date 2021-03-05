@@ -34,12 +34,23 @@ class app extends Component {
     });
     this.setState({ habits });
   };
+
+  handleInputBtnClick = (event) => {
+    const input = document.querySelector("input");
+    const inputValue = input.value;
+    input.value = "";
+    let habits = [...this.state.habits];
+    let habitId = new Date().getTime();
+    habits.push({ id: habitId, name: inputValue, count: 0 });
+    this.setState({ habits });
+    console.log(this.state.habits);
+  };
   render() {
     return (
       <>
         <Navbar habits totalCount={this.state.totalCount} />
         <input type="text" placeholder="Habit" />
-        <button>Add</button>
+        <button onClick={this.handleInputBtnClick}>Add</button>
         <Habits habits={this.state.habits} onUpdate={this.handleUpdate} />
         <button onClick={this.handleResetClick}>Reset All</button>
       </>
